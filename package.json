@@ -2,14 +2,18 @@
   "name": "webliai-backend",
   "type": "module",
   "scripts": {
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy --minify",
+    "dev": "wrangler dev src/index.ts",
+    "deploy": "wrangler deploy",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings"
   },
   "dependencies": {
-    "hono": "^4.10.7"
+    "hono": "^4.10.7",
+    "nanoid": "^5.1.6"
   },
   "devDependencies": {
+    "@types/bun": "^1.3.3",
+    "eslint": "^9.39.1",
+    "typescript": "^5.9.3",
     "wrangler": "^4.4.0"
   }
 }
