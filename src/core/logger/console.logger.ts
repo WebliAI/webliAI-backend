@@ -1,4 +1,4 @@
-import { RequestContext } from "../../types";
+import { RequestContext } from '../../../hono';
 import { ILogger } from './logger.interface';
 
 export class ConsoleLogger implements ILogger {
