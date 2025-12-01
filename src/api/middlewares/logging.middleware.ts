@@ -1,7 +1,6 @@
 import { Context, Next } from 'hono';
 import { getLogger } from '../../core/logger/logger';
 import { reqCtx } from './../../constants/context';
-import { RequestContext } from '../../types';
 
 const logger = getLogger();
 
@@ -27,7 +26,7 @@ export const loggingMiddleware = async (c: Context, next: Next) => {
     requestBody = 'Failed to parse request body';
   }
 
-  logger.infoWithContext(ctx, "Incoming request", {
+  logger.infoWithContext(ctx, "API LOG Incoming request", {
     method: c.req.method,
     path: c.req.path,
     headers: Object.fromEntries(c.req.raw.headers.entries()),
@@ -56,7 +55,7 @@ export const loggingMiddleware = async (c: Context, next: Next) => {
 
   const ctxAfter = c.get(reqCtx);
 
-  logger.infoWithContext(ctxAfter, "Request completed", {
+  logger.infoWithContext(ctxAfter, "API LOG Request completed", {
     status: res.status,
     headers: Object.fromEntries(res.headers.entries()),
     durationMs: Date.now() - ctxAfter.startTime,

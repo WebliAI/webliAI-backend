@@ -33,6 +33,7 @@ export const contextMiddleware = async (c: Context, next: Next) => {
   };
 
   c.set(reqCtx, context);
+  c.header('x-trace-id', traceId)
 
   await next();
 };
