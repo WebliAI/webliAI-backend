@@ -6,7 +6,7 @@ import { RequestContext } from '../../types';
 const logger = getLogger();
 
 export const loggingMiddleware = async (c: Context, next: Next) => {
-  const ctx = c.get(reqCtx) as RequestContext;
+  const ctx = c.get(reqCtx);
 
   let requestBody: any = null;
   try {
@@ -54,7 +54,7 @@ export const loggingMiddleware = async (c: Context, next: Next) => {
     response = "Failed to parse response body";
   }
 
-  const ctxAfter = c.get(reqCtx) as RequestContext;
+  const ctxAfter = c.get(reqCtx);
 
   logger.infoWithContext(ctxAfter, "Request completed", {
     status: res.status,
