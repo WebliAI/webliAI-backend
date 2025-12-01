@@ -26,10 +26,15 @@ export const loggingMiddleware = async (c: Context, next: Next) => {
     requestBody = 'Failed to parse request body';
   }
 
+  const requestHeaders: Record<string, string> = {};
+  c.req.raw.headers.forEach((value, key) => {
+    requestHeaders[key] = value;
+  });
+
   logger.infoWithContext(ctx, "API LOG Incoming request", {
     method: c.req.method,
     path: c.req.path,
-    headers: Object.fromEntries(c.req.raw.headers.entries()),
+    headers: requestHeaders,
     body: requestBody,
   });
 
@@ -55,9 +60,14 @@ export const loggingMiddleware = async (c: Context, next: Next) => {
 
   const ctxAfter = c.get(reqCtx);
 
+  const responseHeaders: Record<string, string> = {};
+  res.headers.forEach((value, key) => {
+    responseHeaders[key] = value;
+  });
+
   logger.infoWithContext(ctxAfter, "API LOG Request completed", {
     status: res.status,
-    headers: Object.fromEntries(res.headers.entries()),
+    headers: responseHeaders,
     durationMs: Date.now() - ctxAfter.startTime,
     response,
   });
