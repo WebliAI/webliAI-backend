@@ -5,7 +5,6 @@ import {
   isValidTraceId,
 } from "../../utils/trace-id.util";
 import { reqCtx } from './../../constants/context';
-import { RequestContext } from '../../types';
 
 export const contextMiddleware = async (c: Context, next: Next) => {
   const traceIdHeader = c.req.header("x-trace-id");
@@ -24,7 +23,7 @@ export const contextMiddleware = async (c: Context, next: Next) => {
     (c.req.raw as any)?.remoteAddress ||
     "unknown";
 
-  const context: RequestContext = {
+  const context = {
     traceId: traceId,
     requestId: requestId,
     startTime: Date.now(),
