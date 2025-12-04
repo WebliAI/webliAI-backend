@@ -3,7 +3,7 @@
  */
 
 // Core
-export { RateLimiter, createRateLimiter } from './rate-limiter';
+export { RateLimiter } from './rate-limiter';
 
 // Storage Backends
 export { BaseRateLimitStorage } from './storage/base.storage';
