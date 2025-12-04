@@ -31,7 +31,7 @@ export const loggingMiddleware = async (c: Context, next: Next) => {
     requestHeaders[key] = value;
   });
 
-  logger.infoWithContext(ctx, "API LOG Incoming request", {
+  logger.infoWithContext(ctx, "API LOG Request", {
     method: c.req.method,
     path: c.req.path,
     headers: requestHeaders,
@@ -65,7 +65,7 @@ export const loggingMiddleware = async (c: Context, next: Next) => {
     responseHeaders[key] = value;
   });
 
-  logger.infoWithContext(ctxAfter, "API LOG Request completed", {
+  logger.infoWithContext(ctxAfter, "API LOG Response", {
     status: res.status,
     headers: responseHeaders,
     durationMs: Date.now() - ctxAfter.startTime,
