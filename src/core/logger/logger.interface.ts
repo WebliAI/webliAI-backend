@@ -1,4 +1,4 @@
-import { RequestContext } from "../../types";
+import { RequestContext } from "../../../hono";
 
 export interface ILogger {
   info(message: string, meta?: Record<string, any>): void;
